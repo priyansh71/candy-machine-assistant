@@ -1,7 +1,7 @@
 {
 	"name": "candy-machine-assistant",
-	"version": "1.0.1",
-	"description": "A tool to assist in the connecting to the Candy Machine, and mint account based on Metaplex NFTs on Solana.",
+	"version": "1.0.2",
+	"description": "A tool to assist in the connecting to candy machines, mint accounts and confirm NFT transactions based on Solana's Metaplex NFTs.",
 	"main": "lib",
 	"type": "commonjs",
 	"repository": {
@@ -17,11 +17,13 @@
 		"build": "tsc",
 		"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
 	},
-	"author": "",
+	"author": "Priyansh Vyas",
 	"keywords": [
 		"candy-machine",
 		"solana-connection",
 		"metaplex",
+		"NFT",
+		"PDA",
 		"sugar"
 	],
 	"dependencies": {
