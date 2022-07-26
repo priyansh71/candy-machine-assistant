@@ -177,7 +177,6 @@ export const sendTransactions = async (
 	signedTxns = fullySignedTransactions.concat(signedTxns);
 	const pendingTxns: Promise<{ txid: string; slot: number }>[] = [];
 
-	console.log("Signed txns length", signedTxns.length, "vs handed in length", instructionSet.length);
 	for (let i = 0; i < signedTxns.length; i++) {
 		const signedTxnPromise = sendSignedTransaction({
 			connection,
@@ -457,10 +456,8 @@ async function awaitTransactionSignatureConfirmation(
 						confirmations: 0,
 					};
 					if (result.err) {
-						console.log("Rejected via websocket", result.err);
 						reject(status);
 					} else {
-						console.log("Resolved via websocket", result);
 						resolve(status);
 					}
 				},
@@ -508,7 +505,6 @@ async function awaitTransactionSignatureConfirmation(
 		// ignore
 	}
 	done = true;
-	console.log("Returning status", status);
 	return status;
 }
 export function sleep(ms: number): Promise<void> {

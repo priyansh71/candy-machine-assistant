@@ -1,7 +1,7 @@
 {
 	"name": "candy-machine-assistant",
-	"version": "1.0.0",
-	"description": "A tool to assist in the connection to the Candy Machine and initiate the Metaplex NFT Standard.",
+	"version": "1.0.1",
+	"description": "A tool to assist in the connecting to the Candy Machine, and mint account based on Metaplex NFTs on Solana.",
 	"main": "lib",
 	"type": "commonjs",
 	"repository": {

@@ -125,7 +125,6 @@ export const awaitTransactionSignatureConfirmation = async (
 		// ignore
 	}
 	done = true;
-	console.log("Returning status", status);
 	return status;
 };
 
@@ -457,10 +456,8 @@ export const mintOneToken = async (
 			const collectionData = (await candyMachine.program.account.collectionPda.fetch(
 				collectionPDA,
 			)) as CollectionData;
-			console.log(collectionData);
 			const collectionMint = collectionData.mint;
 			const collectionAuthorityRecord = await getCollectionAuthorityRecordPDA(collectionMint, collectionPDA);
-			console.log(collectionMint);
 			if (collectionMint) {
 				const collectionMetadata = await getMetadata(collectionMint);
 				const collectionMasterEdition = await getMasterEdition(collectionMint);
