@@ -1,7 +1,7 @@
 ## candy-machine-assistant
 
-An [NPM package](https://www.npmjs.com/package/candy-machine-assistant) which provides functions to connect with Solana's NFT mint accounts, generate PDAs, get candy machine state, send transactions, retrieve collection data, creating mint accounts easier by avoiding writing boilerplate code. 
-This streamlines the minting from a deployed candy machine.
+An [NPM package](https://www.npmjs.com/package/candy-machine-assistant) which provides functions to connect with Solana's NFT mint accounts, generate PDAs, get candy machine state, send transactions, retrieve collection data, get Token MetaData easier by avoiding writing boilerplate code. 
+This streamlines the interactions with a deployed candy machine.
 
 In this extract, 
 ```candyMachine``` has an interface ```CandyMachineAccount``` given by  
@@ -14,13 +14,17 @@ interface CandyMachineAccount {
 }
 ```
 
-other type interfaces are instances from ```@solana/web3.js```
+All other type interfaces are instances from ```@solana/web3.js```
 
 The most utilized examples are given below :
 
 ```js
 getAtaForMint() :
-const userTokenAccountAddress = (await getAtaForMint(mint.publicKey, payer))[0];
+const userTokenAccountAddress = (
+    await getAtaForMint(
+        mint.publicKey, 
+        payer)
+    )[0];
 // Generates the Associated Token Account Address given a mint and walletAddress.
 
 getCandyMachineState() :
@@ -45,7 +49,9 @@ await sendTransaction(
 // Sends a transaction to the blockchain given a set of parameters, returns void.
 
 getCollectionPDA() :
-const [collectionPDA] = await getCollectionPDA(candyMachineAddress);
+const [collectionPDA] = await getCollectionPDA(
+    candyMachineAddress
+    );
 // Returns the Program Derived Address of the collection given a Candy Machine ID.
 
 mintOneToken() :
@@ -60,7 +66,10 @@ const mintResult = await mintOneToken(
 
 
 createAccountsForMint() :
-let setupMint = await createAccountsForMint(candyMachine,walletAddress.publicKey);
+let setupMint = await createAccountsForMint(
+    candyMachine,
+    walletAddress.publicKey
+    );
 // Returns the setup state of the account i.e. = {
     mint: anchor.web3.Keypair;
     userTokenAccount: anchor.web3.PublicKey;
@@ -76,6 +85,18 @@ await awaitTransactionSignatureConfirmation(
     );
 // Takes in a Transaction Signature, a timeout, a connection and queryStatus 
 // returns the slot, amount of confirmations, errors if any and the confirmation status.
+
+shortenAddress():
+const sliced = shortenAddress("35YzKveuqytHjgmgmKgXHi295t7LkDGRCm3xN12tCwRY",4)
+// 35Yz...CwRY , i.e. returns a sliced solana wallet addres in the given format 
+
+getMetadataPDA();
+const metadataPDA = await getMetadataPDA(mint.publicKey);
+// Takes in a Public Key mint and returns the Metadata Program Derived Address associated with it
+
+getMetadataFromMint();
+getMetadataFromMint(mint, connection).then(console.log);
+// Takes in a Public Key mint and a connection instance, to return the metadata of the token
 
 ```
 

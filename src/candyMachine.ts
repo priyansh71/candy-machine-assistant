@@ -15,7 +15,7 @@ import {
 
 export const CANDY_MACHINE_PROGRAM = new anchor.web3.PublicKey("cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ");
 
-const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
+export const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
 
 interface CandyMachineState {
 	authority: anchor.web3.PublicKey;
@@ -220,7 +220,7 @@ const getMasterEdition = async (mint: anchor.web3.PublicKey): Promise<anchor.web
 	)[0];
 };
 
-const getMetadata = async (mint: anchor.web3.PublicKey): Promise<anchor.web3.PublicKey> => {
+export const getMetadataPDA = async (mint: anchor.web3.PublicKey): Promise<anchor.web3.PublicKey> => {
 	return (
 		await anchor.web3.PublicKey.findProgramAddress(
 			[Buffer.from("metadata"), TOKEN_METADATA_PROGRAM_ID.toBuffer(), mint.toBuffer()],
@@ -418,7 +418,7 @@ export const mintOneToken = async (
 			isSigner: true,
 		});
 	}
-	const metadataAddress = await getMetadata(mint.publicKey);
+	const metadataAddress = await getMetadataPDA(mint.publicKey);
 	const masterEdition = await getMasterEdition(mint.publicKey);
 
 	const [candyMachineCreator, creatorBump] = await getCandyMachineCreator(candyMachineAddress);
@@ -459,7 +459,7 @@ export const mintOneToken = async (
 			const collectionMint = collectionData.mint;
 			const collectionAuthorityRecord = await getCollectionAuthorityRecordPDA(collectionMint, collectionPDA);
 			if (collectionMint) {
-				const collectionMetadata = await getMetadata(collectionMint);
+				const collectionMetadata = await getMetadataPDA(collectionMint);
 				const collectionMasterEdition = await getMasterEdition(collectionMint);
 				console.log("Collection PDA: ", collectionPDA.toBase58());
 				console.log("Authority: ", candyMachine.state.authority.toBase58());

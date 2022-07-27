@@ -1,6 +1,6 @@
 {
 	"name": "candy-machine-assistant",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"description": "A tool to assist in the connecting to candy machines, mint accounts and confirm NFT transactions based on Solana's Metaplex NFTs.",
 	"main": "lib",
 	"type": "commonjs",
@@ -27,6 +27,7 @@
 		"sugar"
 	],
 	"dependencies": {
+		"@metaplex-foundation/mpl-token-metadata": "^2.2.2",
 		"@project-serum/anchor": "^0.17.0",
 		"@solana/buffer-layout": "^4.0.0",
 		"@solana/spl-token": "^0.1.8",
