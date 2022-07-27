@@ -22,7 +22,9 @@
 		"candy-machine",
 		"solana-connection",
 		"metaplex",
-		"NFT",
+		"token",
+		"Solana NFT",
+		"NFT Metadata",
 		"PDA",
 		"sugar"
 	],
