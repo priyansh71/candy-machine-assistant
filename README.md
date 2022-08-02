@@ -94,10 +94,6 @@ getMetadataPDA();
 const metadataPDA = await getMetadataPDA(mint.publicKey);
 // Takes in a Public Key mint and returns the Metadata Program Derived Address associated with it
 
-getMetadataFromMint();
-getMetadataFromMint(mint, connection).then(console.log);
-// Takes in a Public Key mint and a connection instance, to return the metadata of the token
-
 ```
 
 Example project : [JokerMania](https://github.com/priyansh71/JokerMania)
